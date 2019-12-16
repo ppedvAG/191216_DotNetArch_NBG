@@ -11,6 +11,21 @@ namespace Dekorator_Demo
         static void Main(string[] args)
         {
 
+            var lecker = new Käse(new Käse(new Pizza()));
+
+            Console.WriteLine(lecker.Description);
+            Console.WriteLine(lecker.Price);
+
+            var leckerMitExtraScharf = new Trüffel(lecker);
+
+            Console.WriteLine(leckerMitExtraScharf.Description);
+            Console.WriteLine(leckerMitExtraScharf.Price);
+
+            var leckerMitAnanas = new Käse(new Ananas(leckerMitExtraScharf));
+
+            Console.WriteLine(leckerMitAnanas.Description);
+            Console.WriteLine(leckerMitAnanas.Price);
+
             Console.WriteLine("---ENDE---");
             Console.ReadKey();
         }
