@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Fassade_Demo
 {
-    class LagerSystem
+    class LagerSystem : ILagerSystem
     {
         public bool IstProduktLagernd(int ProduktID)
         {

@@ -3,7 +3,7 @@ using System.Threading;
 
 namespace Fassade_Demo
 {
-    class DHLVersandSystem
+    class DHLVersandSystem : IVersandSystem
     {
         public void VersendeProdukt()
         {

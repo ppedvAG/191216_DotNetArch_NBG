@@ -8,11 +8,19 @@ namespace Fassade_Demo
 {
     class Amazon
     {
+        public Amazon(ILagerSystem ls, IRechnungsSystem rs, IVersandSystem vs, IBenachrichtigungsSystem es)
+        {
+            this.ls = ls;
+            this.rs = rs;
+            this.vs = vs;
+            this.es = es;
+        }
+
         // Dash-Button
-        private LagerSystem ls = new LagerSystem();
-        private RechnungsSystem rs = new RechnungsSystem();
-        private DHLVersandSystem vs = new DHLVersandSystem();
-        private EmailSystem es = new EmailSystem();
+        private ILagerSystem ls;
+        private IRechnungsSystem rs;
+        private IVersandSystem vs;
+        private IBenachrichtigungsSystem es;
 
         public void Bestellen(int KundenID,int Artikelnummer)
         {
@@ -21,7 +29,7 @@ namespace Fassade_Demo
                 if (ls.IstProduktLagernd(Artikelnummer))
                 {
                     rs.BezahlvorgangStarten(KundenID);
-                    es.BestätigungsmailVersenden();
+                    es.SendeBestätigung();
                     vs.VersendeProdukt();
                 }
                 else

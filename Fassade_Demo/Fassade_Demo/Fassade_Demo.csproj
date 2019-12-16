@@ -44,9 +44,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Amazon.cs" />
+    <Compile Include="Brieftaube.cs" />
     <Compile Include="DHLVersandSystem.cs" />
     <Compile Include="DPDVersandSystem.cs" />
     <Compile Include="EmailSystem.cs" />
+    <Compile Include="IBenachrichtigungsSystem.cs" />
+    <Compile Include="ILagerSystem.cs" />
+    <Compile Include="IRechnungsSystem.cs" />
+    <Compile Include="IVersandSystem.cs" />
     <Compile Include="LagerSystem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

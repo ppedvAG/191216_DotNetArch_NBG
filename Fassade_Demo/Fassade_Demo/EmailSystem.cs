@@ -3,9 +3,9 @@ using System.Threading;
 
 namespace Fassade_Demo
 {
-    class EmailSystem
+    class EmailSystem : IBenachrichtigungsSystem
     {
-        public void BestätigungsmailVersenden()
+        public void SendeBestätigung()
         {
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine("Bestätigungsmail wird versendet....");

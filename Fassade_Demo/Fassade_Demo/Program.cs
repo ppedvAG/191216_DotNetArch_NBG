@@ -22,7 +22,8 @@ namespace Fassade_Demo
 
             int artikelnummer = Convert.ToInt32(Console.ReadLine());
 
-            Amazon alexa = new Amazon();
+            Amazon alexa = new Amazon(new LagerSystem(), new RechnungsSystem(),
+                                      new DPDVersandSystem(new Brieftaube()), new EmailSystem());
 
             alexa.Bestellen(122, artikelnummer);
 
