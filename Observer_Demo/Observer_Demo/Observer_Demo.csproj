@@ -43,9 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Heizung.cs" />
     <Compile Include="Observer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TempSensor.cs" />
+    <Compile Include="Ventilator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
