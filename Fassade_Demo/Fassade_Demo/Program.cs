@@ -13,14 +13,7 @@ namespace Fassade_Demo
             // Hauptsystem -> In der Webseite der Button "Bestellen"
             Console.OutputEncoding = Encoding.Unicode;
 
-            LagerSystem ls = new LagerSystem();
-            RechnungsSystem rs = new RechnungsSystem();
-            DHLVersandSystem vs = new DHLVersandSystem();
-            EmailSystem es = new EmailSystem();
-
-
-
-            // Ohne Fassade:
+            // Mit Fassade:
 
             Console.WriteLine("Bitte geben Sie den zu Bestellenden Artikel ein:");
             Console.WriteLine("Artikel 1: GoF - Designpatterns - Buch 49,99€");
@@ -29,21 +22,9 @@ namespace Fassade_Demo
 
             int artikelnummer = Convert.ToInt32(Console.ReadLine());
 
-            if(rs.HatOffeneRechnungen(122) == false)
-            {
-                if(ls.IstProduktLagernd(artikelnummer))
-                {
-                    rs.BezahlvorgangStarten(122);
-                    es.BestätigungsmailVersenden();
-                    vs.VersendeProdukt();
-                }
-                else
-                {
-                    Console.WriteLine("Das Produkt ist in ihrem Land nicht verfügbar");
-                }
-            }
-            else
-                Console.WriteLine("BEZAHL ERST DEINEN DECKEL !!!!!!!");
+            Amazon alexa = new Amazon();
+
+            alexa.Bestellen(122, artikelnummer);
 
             Console.WriteLine("---ENDE---");
             Console.ReadKey();
