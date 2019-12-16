@@ -29,7 +29,6 @@ namespace Singleton_Demo
                         instance = new Logger();
                     }
                 }
-             
 
                 return instance;
             }
