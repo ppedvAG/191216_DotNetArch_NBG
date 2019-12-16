@@ -33,6 +33,6 @@ namespace Fassade_Demo
                 Console.WriteLine("BEZAHL ERST DEINEN DECKEL !!!!!!!");
         }
 
-
+        // ToDo: Schicht greift auf andere Schicht zu (Strategie-Pattern)
     }
 }
