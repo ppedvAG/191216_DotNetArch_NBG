@@ -29,6 +29,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ppedv.TombstoneStrong.UI.RE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.TombstoneStrong.UI.WPFFromREST", "ppedv.TombstoneStrong.UI.WPFFromREST\ppedv.TombstoneStrong.UI.WPFFromREST.csproj", "{D6A75770-FF90-4F76-897C-0F35FBC48CAB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.TombstoneStrong.Data.EF.ConsoleFrameworkTest", "ppedv.TombstoneStrong.Data.EF.ConsoleFrameworkTest\ppedv.TombstoneStrong.Data.EF.ConsoleFrameworkTest.csproj", "{404506A1-EE2F-4228-88A0-1454A0A75D86}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{D6A75770-FF90-4F76-897C-0F35FBC48CAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6A75770-FF90-4F76-897C-0F35FBC48CAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6A75770-FF90-4F76-897C-0F35FBC48CAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{404506A1-EE2F-4228-88A0-1454A0A75D86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{404506A1-EE2F-4228-88A0-1454A0A75D86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{404506A1-EE2F-4228-88A0-1454A0A75D86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{404506A1-EE2F-4228-88A0-1454A0A75D86}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -85,6 +91,7 @@ Global
 		{A8719121-E22F-4090-A864-480FEB3D6A9F} = {AB52D220-3300-4C51-BE11-78E5D714196D}
 		{B2ACBA2C-7C20-4B87-BE39-70E4CD4174F5} = {AB52D220-3300-4C51-BE11-78E5D714196D}
 		{D6A75770-FF90-4F76-897C-0F35FBC48CAB} = {AB52D220-3300-4C51-BE11-78E5D714196D}
+		{404506A1-EE2F-4228-88A0-1454A0A75D86} = {729E87A7-2A6C-4322-AB06-0B0BF01B11D6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0A329291-1899-46CB-AB3E-97517C64ED6A}
