@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ppedv.TombstoneStrong.Data.EF;
+using ppedv.TombstoneStrong.Logic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +12,28 @@ namespace ppedv.TombstoneStrong.UI.Konsole
     {
         static void Main(string[] args)
         {
+            Core core = new Core(new EFRepository(new EFContext()));
+
+            if (core.IsTimeSheetEmpty())
+                core.GenerateTestData();
+
+            var allEmployees = core.GetAllEmployees();
+
+            foreach (var emp in allEmployees)
+            {
+                Console.WriteLine($"{emp.ID}: {emp.Name} - Abteilung: {emp.Department}");
+            }
+            Console.WriteLine("Bitte geben Sie die ID des Mitarbeiters an, dessen Zeiterfassung Sie sehen wollen:");
+            int id = Convert.ToInt32(Console.ReadLine());
+
+            var allTimeSheets = core.GetAllTimeSheetsForEmployee(allEmployees.First(x => x.ID == id));
+
+            foreach (var timeSheet in allTimeSheets)
+            {
+                Console.WriteLine($"Von {timeSheet.Start.ToLongDateString()} bis {timeSheet.End.ToLongDateString()}");
+                Console.WriteLine($"Gesamtzeit: { timeSheet.End - timeSheet.Start}");
+            }
+
             Console.WriteLine("---ENDE---");
             Console.ReadKey();
         }
