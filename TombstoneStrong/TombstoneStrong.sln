@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{AB52D220-3300-
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.TombstoneStrong.Domain", "ppedv.TombstoneStrong.Domain\ppedv.TombstoneStrong.Domain.csproj", "{FB94597C-8FD7-43C9-9195-2CCDA80F5255}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.TombstoneStrong.Data.EF", "ppedv.TombstoneStrong.Data.EF\ppedv.TombstoneStrong.Data.EF.csproj", "{6DCA543A-7ED6-40C6-9ED2-C204F790E78B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,12 +25,17 @@ Global
 		{FB94597C-8FD7-43C9-9195-2CCDA80F5255}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB94597C-8FD7-43C9-9195-2CCDA80F5255}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB94597C-8FD7-43C9-9195-2CCDA80F5255}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DCA543A-7ED6-40C6-9ED2-C204F790E78B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DCA543A-7ED6-40C6-9ED2-C204F790E78B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DCA543A-7ED6-40C6-9ED2-C204F790E78B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DCA543A-7ED6-40C6-9ED2-C204F790E78B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{FB94597C-8FD7-43C9-9195-2CCDA80F5255} = {2CC63DA8-F844-4792-8D77-C191841F3566}
+		{6DCA543A-7ED6-40C6-9ED2-C204F790E78B} = {729E87A7-2A6C-4322-AB06-0B0BF01B11D6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0A329291-1899-46CB-AB3E-97517C64ED6A}
