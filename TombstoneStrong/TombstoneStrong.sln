@@ -3,9 +3,32 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{2CC63DA8-F844-4792-8D77-C191841F3566}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{729E87A7-2A6C-4322-AB06-0B0BF01B11D6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logic", "Logic", "{E49E1A9A-3ABB-4CC8-BA19-D155585DBFA8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{AB52D220-3300-4C51-BE11-78E5D714196D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.TombstoneStrong.Domain", "ppedv.TombstoneStrong.Domain\ppedv.TombstoneStrong.Domain.csproj", "{FB94597C-8FD7-43C9-9195-2CCDA80F5255}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FB94597C-8FD7-43C9-9195-2CCDA80F5255}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB94597C-8FD7-43C9-9195-2CCDA80F5255}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB94597C-8FD7-43C9-9195-2CCDA80F5255}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB94597C-8FD7-43C9-9195-2CCDA80F5255}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FB94597C-8FD7-43C9-9195-2CCDA80F5255} = {2CC63DA8-F844-4792-8D77-C191841F3566}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0A329291-1899-46CB-AB3E-97517C64ED6A}
