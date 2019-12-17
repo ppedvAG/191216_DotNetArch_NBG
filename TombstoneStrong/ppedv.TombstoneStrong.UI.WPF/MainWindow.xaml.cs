@@ -23,6 +23,8 @@ namespace ppedv.TombstoneStrong.UI.WPF
         public MainWindow()
         {
             InitializeComponent();
+            // Alternative für XAML:
+            // this.DataContext = new MainViewModel(new Core(...))
         }
     }
 }

@@ -4,9 +4,31 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ppedv.TombstoneStrong.UI.WPF"
+        xmlns:vm="clr-namespace:ppedv.TombstoneStrong.UI.WPF.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="TombstoneStrong - Zeitverwaltungstool" Height="450" Width="800">
+    <Window.DataContext>
+        <vm:MainViewModel/>
+        <!-- Funktioniert nur mit einem parameterlosen Konstruktor-->
+    </Window.DataContext>
+    
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Lade Mitarbeiter" Command="{Binding GetEmployeeCommand}"/>
+        </Menu>
+        <!-- DataGrid ItemsSource="{Binding Employees}"/-->
+
+        <ListBox ItemsSource="{Binding Employees}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Background="LavenderBlush">
+                        <TextBlock Text="{Binding ID}" Foreground="LightYellow"/>
+                        <TextBlock Text="{Binding Name}" Foreground="HotPink"/>
+                        <TextBlock Text="{Binding Department}" Foreground="DarkOliveGreen"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         
-    </Grid>
+    </DockPanel>
 </Window>
