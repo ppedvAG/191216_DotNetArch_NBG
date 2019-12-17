@@ -1,8 +1,12 @@
-﻿using Domain;
+﻿using Domain.Framework;
 using System;
-using System.Composition;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace MEF_Demo
+namespace MEF_Demo.Framework
 {
     [Export(typeof(IRechner))]
     public class EchterRechner : IRechner
