@@ -99,6 +99,12 @@ namespace ppedv.TombstoneStrong.Logic
         {
             return repository.GetAll<Employee>();
         }
+        public Employee GetEmployeeByID(int id) => repository.GetByID<Employee>(id);
+        public void DeleteEmployee(Employee deleteMe) => repository.Delete(deleteMe);
+        public void UpdateEmployee(Employee updateMe) => repository.Update(updateMe);
+        public void AddEmployee(Employee addMe) => repository.Add(addMe);
+
+        public void SaveRepository() => repository.Save();
         public IEnumerable<TimeSheet> GetAllTimeSheetsForEmployee(Employee input)
         {
             return repository.Query<TimeSheet>().Where(x => x.Employee.ID == input.ID);
