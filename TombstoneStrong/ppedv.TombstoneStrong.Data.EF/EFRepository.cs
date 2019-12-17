@@ -12,6 +12,7 @@ namespace ppedv.TombstoneStrong.Data.EF
         public EFRepository(EFContext context)
         {
             this.context = context;
+            context.Database.EnsureCreated(); // Damit EFCore auch immer die DB anlegt !
         }
         private readonly EFContext context;
 
