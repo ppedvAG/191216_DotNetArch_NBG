@@ -7,12 +7,13 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ppedv.TombstoneStrong.UI.WPF.ViewModels
 {
-    public class MainViewModel : INotifyPropertyChanged
+    public class MainViewModel : BaseViewModel
     {
         public MainViewModel()
         {
@@ -24,15 +25,18 @@ namespace ppedv.TombstoneStrong.UI.WPF.ViewModels
 
         private readonly Core core;
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public RelayCommand GetEmployeeCommand { get; set; }
         private void GetEmployees()
         {
             Employees = core.GetAllEmployees().ToList();
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Employees)));
         }
-        public List<Employee> Employees { get; set; }
+
+        private List<Employee> employees;
+        public List<Employee> Employees
+        {
+            get => employees;
+            set => SetValue(ref employees, value);
+        }
 
     }
 }
