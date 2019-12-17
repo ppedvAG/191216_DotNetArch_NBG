@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.TombstoneStrong.Data.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.TombstoneStrong.Data.EF.Tests", "ppedv.TombstoneStrong.Data.EF.Tests\ppedv.TombstoneStrong.Data.EF.Tests.csproj", "{0FF316A6-2989-4E77-BD60-80936B30F0CD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.TombstoneStrong.Logic", "ppedv.TombstoneStrong.Logic\ppedv.TombstoneStrong.Logic.csproj", "{9F3E23E4-EF08-4463-B534-D526DE6BFA8C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{0FF316A6-2989-4E77-BD60-80936B30F0CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FF316A6-2989-4E77-BD60-80936B30F0CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FF316A6-2989-4E77-BD60-80936B30F0CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F3E23E4-EF08-4463-B534-D526DE6BFA8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F3E23E4-EF08-4463-B534-D526DE6BFA8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F3E23E4-EF08-4463-B534-D526DE6BFA8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F3E23E4-EF08-4463-B534-D526DE6BFA8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -43,6 +49,7 @@ Global
 		{FB94597C-8FD7-43C9-9195-2CCDA80F5255} = {2CC63DA8-F844-4792-8D77-C191841F3566}
 		{6DCA543A-7ED6-40C6-9ED2-C204F790E78B} = {729E87A7-2A6C-4322-AB06-0B0BF01B11D6}
 		{0FF316A6-2989-4E77-BD60-80936B30F0CD} = {729E87A7-2A6C-4322-AB06-0B0BF01B11D6}
+		{9F3E23E4-EF08-4463-B534-D526DE6BFA8C} = {E49E1A9A-3ABB-4CC8-BA19-D155585DBFA8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0A329291-1899-46CB-AB3E-97517C64ED6A}
