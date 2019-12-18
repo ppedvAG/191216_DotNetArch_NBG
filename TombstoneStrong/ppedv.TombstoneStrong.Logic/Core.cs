@@ -15,6 +15,22 @@ namespace ppedv.TombstoneStrong.Logic
         }
         private IUnitOfWork UoW;
 
+        public void GenerateTestEmployees()
+        {
+            Employee em1 = new Employee { Name = "Tom Ate", Department = "Gemüseabteilung" };
+            Employee em2 = new Employee { Name = "Anna Nass", Department = "Obstabteilung" };
+            Employee em3 = new Employee { Name = "Peter Silie", Department = "Gemüseabteilung" };
+            Employee em4 = new Employee { Name = "Franz Ose", Department = "Travel" };
+            Employee em5 = new Employee { Name = "Martha Pfahl", Department = "Travel" };
+
+            UoW.EmployeeRepository.Add(em1);
+            UoW.EmployeeRepository.Add(em2);
+            UoW.EmployeeRepository.Add(em3);
+            UoW.EmployeeRepository.Add(em4);
+            UoW.EmployeeRepository.Add(em5);
+
+            UoW.SaveAll();
+        }
         public void GenerateTestData()
         {
             Employee em1 = new Employee { Name = "Tom Ate", Department = "Gemüseabteilung" };
