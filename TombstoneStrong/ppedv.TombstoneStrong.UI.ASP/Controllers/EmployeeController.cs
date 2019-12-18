@@ -13,7 +13,7 @@ namespace ppedv.TombstoneStrong.UI.ASP.Controllers
     {
         public EmployeeController()
         {
-            core = new Core(new EFRepository(new EFContext()));
+            core = new Core(new EFUnitOfWork());
         }
         private Core core;
 

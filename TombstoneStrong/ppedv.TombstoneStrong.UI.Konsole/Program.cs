@@ -12,7 +12,7 @@ namespace ppedv.TombstoneStrong.UI.Konsole
     {
         static void Main(string[] args)
         {
-            Core core = new Core(new EFRepository(new EFContext()));
+            Core core = new Core(new EFUnitOfWork());
 
             if (core.IsTimeSheetEmpty())
                 core.GenerateTestData();
