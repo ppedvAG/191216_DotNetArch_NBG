@@ -153,5 +153,47 @@ namespace ppedv.TombstoneStrong.Logic
                 item.SaveAll();
         }
         #endregion
+
+        public ModuleBuilder<T> CreateModul<T>() where T : Entity
+        {
+            return ModuleBuilder<T>.Create(this);
+        }
+
+        public class ModuleBuilder<T> where T : Entity
+        {
+            internal static ModuleBuilder<T> Create(Core core)
+            {
+                return new ModuleBuilder<T>(core);
+            }
+            private ModuleBuilder(Core core)
+            {
+                module = core.Modul<T>();
+                this.core = core;
+            }
+
+            private readonly Core core;
+            private ICoreModul<T> module;
+
+            private bool hasAuth = false;
+
+            public ModuleBuilder<T> WithAuthentification(User currentUser)
+            {
+                if(hasAuth == false)
+                {
+                    module = new AuthentificationModule<T>(currentUser, module, core.GetUnitOfWorkFor<T>());
+                    hasAuth = true;
+                }
+                return this;
+            }
+
+            public ICoreModul<T> Build() => module;
+
+            public ModuleBuilder<T> LogsExceptionsInto(Action<string> callback)
+            {
+                module = new ExceptionModule<T>(module, core.GetUnitOfWorkFor<T>(), callback);
+                return this;
+            }
+        }
+
     }
 }

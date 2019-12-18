@@ -20,10 +20,26 @@ namespace ppedv.TombstoneStrong.UI.Konsole
             {
                 core.GenerateTestData(); // für XML UND EF
             }
+            User currentUser = User.CanDelete;
+            var empModul = core.CreateModul<Employee>()
+                               .WithAuthentification(currentUser)
+                               .LogsExceptionsInto(message => 
+                               {
+                                   Console.ForegroundColor = ConsoleColor.Red;
+                                   Console.WriteLine(message);
+                                   Console.ResetColor();
+                               })
+                               .Build();
 
-            IEnumerable<Employee> allEmployees = core.Modul<Employee>().GetAll();
+            IEnumerable<Employee> allEmployees = empModul.GetAll();
+            if (allEmployees is null)
+            {
+                Console.WriteLine("Programm wird beendet");
+                Console.ReadKey();
+                return;
+            }
 
-            foreach (var emp in allEmployees)
+            foreach (var emp in allEmployees ?? Enumerable.Empty<Employee>())
             {
                 Console.WriteLine($"{emp.ID}: {emp.Name} - Abteilung: {emp.Department}");
             }
