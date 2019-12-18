@@ -29,10 +29,32 @@ namespace ppedv.TombstoneStrong.Logic
                 return result;
         }
 
+        public ICoreModul<T> Modul<T>() where T : Entity
+        {
+            // Primitiv:
+            if (typeof(T) == typeof(Employee))
+                return (ICoreModul<T>)new EmployeeModul(GetUnitOfWorkFor<Employee>());
+            else if (typeof(T) == typeof(TimeSheet))
+                return (ICoreModul<T>)new TimeSheetModul(GetUnitOfWorkFor<TimeSheet>());
+            else
+                throw new NotImplementedException("Es ist kein Modul für den Datentypen {typeof(T)} vorhanden");
+        }
+
+        // Modul
+        //  -> Methoden wie Add/Update/Delete/ usw...
+        //  -> Kann gekapselt werden (AuthModul -> nicht alles erlaubt ist)
+        //  -> Beispielaufruf: core.Modul<Employee>().Add(item);
+
+        // Definition vom Modul: alles in der Logik
+        // Vorteil von Domain: andere DLL mit einem neuen Modul 
+
+
+
+        #region Beides
         public void GenerateTestData()
         {
             // XML
-            Employee em1 = new Employee { ID = 1, Name = "Tom Ate", Department = "Gemüseabteilung",Guid = Guid.NewGuid().ToString() };
+            Employee em1 = new Employee { ID = 1, Name = "Tom Ate", Department = "Gemüseabteilung", Guid = Guid.NewGuid().ToString() };
             Employee em2 = new Employee { ID = 2, Name = "Anna Nass", Department = "Obstabteilung", Guid = Guid.NewGuid().ToString() };
             Employee em3 = new Employee { ID = 3, Name = "Peter Silie", Department = "Gemüseabteilung", Guid = Guid.NewGuid().ToString() };
 
@@ -104,54 +126,32 @@ namespace ppedv.TombstoneStrong.Logic
                 End = new DateTime(2019, 12, 19, 9, 36, 00),
             };
 
-            var timeSheetRepo = GetUnitOfWorkFor<TimeSheet>().GetRepository<TimeSheet>();
 
-            timeSheetRepo.Add(ts1);
-            timeSheetRepo.Add(ts2);
-            timeSheetRepo.Add(ts3);
-            timeSheetRepo.Add(ts4);
-            timeSheetRepo.Add(ts5);
-            timeSheetRepo.Add(ts6);
-            timeSheetRepo.Add(ts7);
-            timeSheetRepo.Add(ts8);
-            timeSheetRepo.Add(ts9);
+            Modul<TimeSheet>().Add(ts1);
+            Modul<TimeSheet>().Add(ts2);
+            Modul<TimeSheet>().Add(ts3);
+            Modul<TimeSheet>().Add(ts4);
+            Modul<TimeSheet>().Add(ts5);
+            Modul<TimeSheet>().Add(ts6);
+            Modul<TimeSheet>().Add(ts7);
+            Modul<TimeSheet>().Add(ts8);
+            Modul<TimeSheet>().Add(ts9);
 
-            GetUnitOfWorkFor<TimeSheet>().SaveAll();
+            Modul<Employee>().Add(em1);
+            Modul<Employee>().Add(em2);
+            Modul<Employee>().Add(em3);
 
-            GetUnitOfWorkFor<Employee>().EmployeeRepository.Add(em1);
-            GetUnitOfWorkFor<Employee>().EmployeeRepository.Add(em2);
-            GetUnitOfWorkFor<Employee>().EmployeeRepository.Add(em3);
-
-            GetUnitOfWorkFor<Employee>().SaveAll();
+            SaveAllUoW();
         }
-        public bool IsTimeSheetEmpty()
+        public bool IsEmpty<T>() where T : Entity
         {
-            return GetUnitOfWorkFor<TimeSheet>().GetRepository<TimeSheet>().Query().Count() == 0;
+            return GetUnitOfWorkFor<T>().GetRepository<T>().Query().Count() == 0;
         }
-
-        public IEnumerable<Employee> GetAllEmployees()
-        {
-            return GetUnitOfWorkFor<Employee>().EmployeeRepository.GetAll();
-        }
-        public Employee GetEmployeeByID(int id) => GetUnitOfWorkFor<Employee>().EmployeeRepository.GetByID(id);
-        public void DeleteEmployee(Employee deleteMe) => GetUnitOfWorkFor<Employee>().EmployeeRepository.Delete(deleteMe);
-        public void UpdateEmployee(Employee updateMe) => GetUnitOfWorkFor<Employee>().EmployeeRepository.Update(updateMe);
-        public void AddEmployee(Employee addMe) => GetUnitOfWorkFor<Employee>().EmployeeRepository.Add(addMe);
-
         public void SaveAllUoW()
         {
             foreach (var item in UoW)
                 item.SaveAll();
         }
-        public IEnumerable<TimeSheet> GetAllTimeSheetsForEmployee(Employee input)
-        {
-            return GetUnitOfWorkFor<TimeSheet>().GetRepository<TimeSheet>().Query().Where(x => x.EmployeeGuid == input.Guid);
-        }
-
-        public TimeSheet[] GetAllTimeSheets()
-        {
-            var timeSheets = GetUnitOfWorkFor<TimeSheet>().GetRepository<TimeSheet>().GetAll();
-            return timeSheets.ToArray();
-        }
+        #endregion
     }
 }

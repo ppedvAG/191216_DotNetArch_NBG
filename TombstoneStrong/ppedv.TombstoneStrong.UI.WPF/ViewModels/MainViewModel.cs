@@ -28,7 +28,7 @@ namespace ppedv.TombstoneStrong.UI.WPF.ViewModels
         public RelayCommand GetEmployeeCommand { get; set; }
         private void GetEmployees()
         {
-            Employees = core.GetAllEmployees().ToList();
+            Employees = core.Modul<Employee>().GetAll().ToList();
         }
 
         private List<Employee> employees;

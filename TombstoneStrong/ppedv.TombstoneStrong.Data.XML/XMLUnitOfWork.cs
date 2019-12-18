@@ -40,7 +40,10 @@ namespace ppedv.TombstoneStrong.Data.XML
         public IEmployeeRepository EmployeeRepository => new XMLEmployeeRepository(ref employees);
         public IUniversalRepository<T> GetRepository<T>() where T : Entity
         {
-            throw new NotImplementedException();
+            if (typeof(T) == typeof(Employee))
+                return (IUniversalRepository<T>)EmployeeRepository;
+            else
+                throw new InvalidOperationException($"Der Datentyp {typeof(T)} wird nicht unterstützt");
         }
 
         public void SaveAll()

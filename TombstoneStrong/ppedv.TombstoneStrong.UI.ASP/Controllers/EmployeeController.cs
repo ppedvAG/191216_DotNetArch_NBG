@@ -20,13 +20,13 @@ namespace ppedv.TombstoneStrong.UI.ASP.Controllers
         // GET: Employee
         public ActionResult Index()
         {
-            return View(core.GetAllEmployees());
+            return View(core.Modul<Employee>().GetAll());
         }
 
         // GET: Employee/Details/5
         public ActionResult Details(int id)
         {
-            return View(core.GetEmployeeByID(id));
+            return View(core.Modul<Employee>().GetByID(id));
         }
 
         // GET: Employee/Create
@@ -41,7 +41,7 @@ namespace ppedv.TombstoneStrong.UI.ASP.Controllers
         {
             try
             {
-                core.AddEmployee(newItem);
+                core.Modul<Employee>().Add(newItem);
                 core.SaveAllUoW();
                 return RedirectToAction("Index");
             }
@@ -54,7 +54,7 @@ namespace ppedv.TombstoneStrong.UI.ASP.Controllers
         // GET: Employee/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(core.GetEmployeeByID(id));
+            return View(core.Modul<Employee>().GetByID(id));
         }
 
         // POST: Employee/Edit/5
@@ -64,7 +64,7 @@ namespace ppedv.TombstoneStrong.UI.ASP.Controllers
             try
             {
                 // TODO: Add update logic here
-                core.UpdateEmployee(updatedItem);
+                core.Modul<Employee>().Update(updatedItem);
                 core.SaveAllUoW();
                 return RedirectToAction("Index");
             }
@@ -77,7 +77,7 @@ namespace ppedv.TombstoneStrong.UI.ASP.Controllers
         // GET: Employee/Delete/5
         public ActionResult Delete(int id)
         {
-            return View(core.GetEmployeeByID(id));
+            return View(core.Modul<Employee>().GetByID(id));
         }
 
         // POST: Employee/Delete/5
@@ -87,7 +87,7 @@ namespace ppedv.TombstoneStrong.UI.ASP.Controllers
             try
             {
                 // TODO: Add delete logic here
-                core.DeleteEmployee(deleteItem);
+                core.Modul<Employee>().Delete(deleteItem);
                 core.SaveAllUoW();
 
                 return RedirectToAction("Index");
