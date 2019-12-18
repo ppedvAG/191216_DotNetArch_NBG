@@ -16,7 +16,19 @@ namespace ppedv.TombstoneStrong.Data.XML
             using (FileStream stream = new FileStream(path, FileMode.OpenOrCreate))
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(HashSet<Employee>));
-                employees = (HashSet<Employee>) serializer.Deserialize(stream);
+                try
+                {
+                    employees = (HashSet<Employee>) serializer.Deserialize(stream);
+                }
+                catch (InvalidOperationException ex)
+                {
+                    // Es sind keine Employee-Daten vorhanden
+                }
+                finally
+                {
+                    if(employees == null)
+                        employees = new HashSet<Employee>();
+                }
             }
         }
         private readonly string path;
@@ -31,7 +43,7 @@ namespace ppedv.TombstoneStrong.Data.XML
 
         public void SaveAll()
         {
-            using(FileStream stream = new FileStream(path,FileMode.CreateNew))
+            using(FileStream stream = new FileStream(path,FileMode.Create))
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(HashSet<Employee>));
                 serializer.Serialize(stream, employees);

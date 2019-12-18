@@ -17,11 +17,11 @@ namespace ppedv.TombstoneStrong.Logic
 
         public void GenerateTestEmployees()
         {
-            Employee em1 = new Employee { Name = "Tom Ate", Department = "Gemüseabteilung" };
-            Employee em2 = new Employee { Name = "Anna Nass", Department = "Obstabteilung" };
-            Employee em3 = new Employee { Name = "Peter Silie", Department = "Gemüseabteilung" };
-            Employee em4 = new Employee { Name = "Franz Ose", Department = "Travel" };
-            Employee em5 = new Employee { Name = "Martha Pfahl", Department = "Travel" };
+            Employee em1 = new Employee { ID = 0, Name = "Tom Ate", Department = "Gemüseabteilung" };
+            Employee em2 = new Employee { ID = 1, Name = "Anna Nass", Department = "Obstabteilung" };
+            Employee em3 = new Employee { ID = 2, Name = "Peter Silie", Department = "Gemüseabteilung" };
+            Employee em4 = new Employee { ID = 3, Name = "Franz Ose", Department = "Travel" };
+            Employee em5 = new Employee { ID = 4, Name = "Martha Pfahl", Department = "Travel" };
 
             UoW.EmployeeRepository.Add(em1);
             UoW.EmployeeRepository.Add(em2);
@@ -41,13 +41,13 @@ namespace ppedv.TombstoneStrong.Logic
             {
                 Employee = em1,
                 Start = new DateTime(2019, 12, 17, 9, 30, 00),
-                End = new DateTime(2019, 12,17, 17, 25, 00),
+                End = new DateTime(2019, 12, 17, 17, 25, 00),
             };
             TimeSheet ts2 = new TimeSheet
             {
                 Employee = em1,
                 Start = new DateTime(2019, 12, 16, 7, 30, 00),
-                End = new DateTime(2019, 12 ,16, 12, 00, 00),
+                End = new DateTime(2019, 12, 16, 12, 00, 00),
             };
             TimeSheet ts3 = new TimeSheet
             {

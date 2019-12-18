@@ -148,6 +148,10 @@
       <Project>{6dca543a-7ed6-40c6-9ed2-c204f790e78b}</Project>
       <Name>ppedv.TombstoneStrong.Data.EF</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ppedv.TombstoneStrong.Data.XML\ppedv.TombstoneStrong.Data.XML.csproj">
+      <Project>{EB60C851-1402-40C2-9329-10C78D30D6ED}</Project>
+      <Name>ppedv.TombstoneStrong.Data.XML</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ppedv.TombstoneStrong.Domain\ppedv.TombstoneStrong.Domain.csproj">
       <Project>{fb94597c-8fd7-43c9-9195-2ccda80f5255}</Project>
       <Name>ppedv.TombstoneStrong.Domain</Name>
