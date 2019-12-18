@@ -9,11 +9,11 @@ namespace ppedv.TombstoneStrong.Logic
 {
     public class Core
     {
-        public Core(IRepository repository)
+        public Core(IUnitOfWork UoW)
         {
-            this.repository = repository;
+            this.UoW = UoW;
         }
-        private IRepository repository;
+        private IUnitOfWork UoW;
 
         public void GenerateTestData()
         {
@@ -78,36 +78,38 @@ namespace ppedv.TombstoneStrong.Logic
                 End = new DateTime(2019, 12, 19, 9, 36, 00),
             };
 
-            repository.Add(ts1);
-            repository.Add(ts2);
-            repository.Add(ts3);
-            repository.Add(ts4);
-            repository.Add(ts5);
-            repository.Add(ts6);
-            repository.Add(ts7);
-            repository.Add(ts8);
-            repository.Add(ts9);
+            var timeSheetRepo = UoW.GetRepository<TimeSheet>();
 
-            repository.Save();
+            timeSheetRepo.Add(ts1);
+            timeSheetRepo.Add(ts2);
+            timeSheetRepo.Add(ts3);
+            timeSheetRepo.Add(ts4);
+            timeSheetRepo.Add(ts5);
+            timeSheetRepo.Add(ts6);
+            timeSheetRepo.Add(ts7);
+            timeSheetRepo.Add(ts8);
+            timeSheetRepo.Add(ts9);
+
+            UoW.SaveAll();
         }
         public bool IsTimeSheetEmpty()
         {
-            return repository.Query<TimeSheet>().Count() == 0;
+            return UoW.GetRepository<TimeSheet>().Query().Count() == 0;
         }
 
         public IEnumerable<Employee> GetAllEmployees()
         {
-            return repository.GetAll<Employee>();
+            return UoW.EmployeeRepository.GetAll();
         }
-        public Employee GetEmployeeByID(int id) => repository.GetByID<Employee>(id);
-        public void DeleteEmployee(Employee deleteMe) => repository.Delete(deleteMe);
-        public void UpdateEmployee(Employee updateMe) => repository.Update(updateMe);
-        public void AddEmployee(Employee addMe) => repository.Add(addMe);
+        public Employee GetEmployeeByID(int id) => UoW.EmployeeRepository.GetByID(id);
+        public void DeleteEmployee(Employee deleteMe) => UoW.EmployeeRepository.Delete(deleteMe);
+        public void UpdateEmployee(Employee updateMe) => UoW.EmployeeRepository.Update(updateMe);
+        public void AddEmployee(Employee addMe) => UoW.EmployeeRepository.Add(addMe);
 
-        public void SaveRepository() => repository.Save();
+        public void SaveRepository() => UoW.SaveAll();
         public IEnumerable<TimeSheet> GetAllTimeSheetsForEmployee(Employee input)
         {
-            return repository.Query<TimeSheet>().Where(x => x.Employee.ID == input.ID);
+            return UoW.GetRepository<TimeSheet>().Query().Where(x => x.Employee.ID == input.ID);
         }
     }
 }
