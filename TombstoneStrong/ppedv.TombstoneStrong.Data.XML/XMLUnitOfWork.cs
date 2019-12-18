@@ -34,8 +34,10 @@ namespace ppedv.TombstoneStrong.Data.XML
         private readonly string path;
         private HashSet<Employee> employees;
 
-        public IEmployeeRepository EmployeeRepository => new XMLEmployeeRepository(ref employees);
+        public Type[] SupportedEntities => new Type[] { typeof(Employee) };
 
+
+        public IEmployeeRepository EmployeeRepository => new XMLEmployeeRepository(ref employees);
         public IUniversalRepository<T> GetRepository<T>() where T : Entity
         {
             throw new NotImplementedException();

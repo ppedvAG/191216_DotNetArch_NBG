@@ -9,13 +9,25 @@ namespace ppedv.TombstoneStrong.Logic
 {
     public class Core
     {
-        public Core(IUnitOfWork UoWforEmployee, IUnitOfWork UoWForTimeSheet)
+        public Core(params IUnitOfWork[] UoW)
         {
-            this.UoWforEmployee = UoWforEmployee;
-            this.UoWForTimeSheet = UoWForTimeSheet;
+            this.UoW = UoW;
         }
-        private IUnitOfWork UoWforEmployee;  // XML
-        private IUnitOfWork UoWForTimeSheet; // EF
+        private readonly IUnitOfWork[] UoW;
+
+        // Factory-Method
+        private IUnitOfWork GetUnitOfWorkFor<T>() where T : Entity
+        {
+            // ToDo: Was wenn es 2 UoWs für "Employee" gibt ?
+            // Entweder beides (MergedUoW)
+            // Oder Attributen "Priority"
+            var result = UoW.FirstOrDefault(x => x.SupportedEntities.Contains(typeof(T)));
+
+            if (result == null)
+                throw new InvalidOperationException($"Es gibt kein UoW für den Datentyp {typeof(T)}");
+            else
+                return result;
+        }
 
         public void GenerateTestData()
         {
@@ -92,7 +104,7 @@ namespace ppedv.TombstoneStrong.Logic
                 End = new DateTime(2019, 12, 19, 9, 36, 00),
             };
 
-            var timeSheetRepo = UoWForTimeSheet.GetRepository<TimeSheet>();
+            var timeSheetRepo = GetUnitOfWorkFor<TimeSheet>().GetRepository<TimeSheet>();
 
             timeSheetRepo.Add(ts1);
             timeSheetRepo.Add(ts2);
@@ -104,42 +116,41 @@ namespace ppedv.TombstoneStrong.Logic
             timeSheetRepo.Add(ts8);
             timeSheetRepo.Add(ts9);
 
-            UoWForTimeSheet.SaveAll();
+            GetUnitOfWorkFor<TimeSheet>().SaveAll();
 
-            UoWforEmployee.EmployeeRepository.Add(em1);
-            UoWforEmployee.EmployeeRepository.Add(em2);
-            UoWforEmployee.EmployeeRepository.Add(em3);
+            GetUnitOfWorkFor<Employee>().EmployeeRepository.Add(em1);
+            GetUnitOfWorkFor<Employee>().EmployeeRepository.Add(em2);
+            GetUnitOfWorkFor<Employee>().EmployeeRepository.Add(em3);
 
-            UoWforEmployee.SaveAll();
+            GetUnitOfWorkFor<Employee>().SaveAll();
         }
-
         public bool IsTimeSheetEmpty()
         {
-            return UoWForTimeSheet.GetRepository<TimeSheet>().Query().Count() == 0;
+            return GetUnitOfWorkFor<TimeSheet>().GetRepository<TimeSheet>().Query().Count() == 0;
         }
 
         public IEnumerable<Employee> GetAllEmployees()
         {
-            return UoWforEmployee.EmployeeRepository.GetAll();
+            return GetUnitOfWorkFor<Employee>().EmployeeRepository.GetAll();
         }
-        public Employee GetEmployeeByID(int id) => UoWforEmployee.EmployeeRepository.GetByID(id);
-        public void DeleteEmployee(Employee deleteMe) => UoWforEmployee.EmployeeRepository.Delete(deleteMe);
-        public void UpdateEmployee(Employee updateMe) => UoWforEmployee.EmployeeRepository.Update(updateMe);
-        public void AddEmployee(Employee addMe) => UoWforEmployee.EmployeeRepository.Add(addMe);
+        public Employee GetEmployeeByID(int id) => GetUnitOfWorkFor<Employee>().EmployeeRepository.GetByID(id);
+        public void DeleteEmployee(Employee deleteMe) => GetUnitOfWorkFor<Employee>().EmployeeRepository.Delete(deleteMe);
+        public void UpdateEmployee(Employee updateMe) => GetUnitOfWorkFor<Employee>().EmployeeRepository.Update(updateMe);
+        public void AddEmployee(Employee addMe) => GetUnitOfWorkFor<Employee>().EmployeeRepository.Add(addMe);
 
-        public void SaveRepository()
+        public void SaveAllUoW()
         {
-            UoWforEmployee.SaveAll();
-            UoWForTimeSheet.SaveAll();
+            foreach (var item in UoW)
+                item.SaveAll();
         }
         public IEnumerable<TimeSheet> GetAllTimeSheetsForEmployee(Employee input)
         {
-            return UoWForTimeSheet.GetRepository<TimeSheet>().Query().Where(x => x.EmployeeGuid == input.Guid);
+            return GetUnitOfWorkFor<TimeSheet>().GetRepository<TimeSheet>().Query().Where(x => x.EmployeeGuid == input.Guid);
         }
 
         public TimeSheet[] GetAllTimeSheets()
         {
-            var timeSheets = UoWForTimeSheet.GetRepository<TimeSheet>().GetAll();
+            var timeSheets = GetUnitOfWorkFor<TimeSheet>().GetRepository<TimeSheet>().GetAll();
             return timeSheets.ToArray();
         }
     }

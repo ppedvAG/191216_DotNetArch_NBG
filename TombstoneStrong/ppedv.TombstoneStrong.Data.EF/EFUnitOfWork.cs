@@ -1,5 +1,7 @@
 ﻿using ppedv.TombstoneStrong.Domain;
 using ppedv.TombstoneStrong.Domain.Interfaces;
+using System;
+using System.Linq;
 
 namespace ppedv.TombstoneStrong.Data.EF
 {
@@ -12,7 +14,6 @@ namespace ppedv.TombstoneStrong.Data.EF
         //}
         //private readonly EFContext context; 
         #endregion
-
         // Variante 2: Context als Singleton
         private readonly object lockObject = new object();
         private EFContext context;
@@ -28,6 +29,8 @@ namespace ppedv.TombstoneStrong.Data.EF
                 return context;
             }
         }
+
+        public Type[] SupportedEntities => new Type[] { typeof(TimeSheet) };
 
 
         private IEmployeeRepository employeeRepository;
@@ -49,7 +52,11 @@ namespace ppedv.TombstoneStrong.Data.EF
         {
             // ToDo: Pro-Variante: Wenn T ein Employee ist -> EmployeeRepository zurückgeben
             // ToDo: Repository-Cache, damit nichts doppelt generiert wird
-            return new EFUniversalRepository<T>(Context);
+
+            if (SupportedEntities.Contains(typeof(T)))
+                return new EFUniversalRepository<T>(Context);
+            else
+                throw new InvalidOperationException($"Der Datentyp {typeof(T)} wird nicht unterstützt");
         }
 
         public void SaveAll()

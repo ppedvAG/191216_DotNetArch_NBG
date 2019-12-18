@@ -42,7 +42,7 @@ namespace ppedv.TombstoneStrong.UI.ASP.Controllers
             try
             {
                 core.AddEmployee(newItem);
-                core.SaveRepository();
+                core.SaveAllUoW();
                 return RedirectToAction("Index");
             }
             catch
@@ -65,7 +65,7 @@ namespace ppedv.TombstoneStrong.UI.ASP.Controllers
             {
                 // TODO: Add update logic here
                 core.UpdateEmployee(updatedItem);
-                core.SaveRepository();
+                core.SaveAllUoW();
                 return RedirectToAction("Index");
             }
             catch
@@ -88,7 +88,7 @@ namespace ppedv.TombstoneStrong.UI.ASP.Controllers
             {
                 // TODO: Add delete logic here
                 core.DeleteEmployee(deleteItem);
-                core.SaveRepository();
+                core.SaveAllUoW();
 
                 return RedirectToAction("Index");
             }
