@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace ppedv.TombstoneStrong.Domain
@@ -7,5 +8,6 @@ namespace ppedv.TombstoneStrong.Domain
     {
         public string Name { get; set; }
         public string Department { get; set; }
+        public string Guid { get; set; }
     }
 }

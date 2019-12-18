@@ -13,7 +13,9 @@ namespace ppedv.TombstoneStrong.UI.Konsole
     {
         static void Main(string[] args)
         {
-            Core core = new Core(new XMLUnitOfWork());
+            Core core = new Core(new XMLUnitOfWork(),new EFUnitOfWork());
+
+            var test = core.GetAllTimeSheets();
 
             // Für EFs
             // if (core.IsTimeSheetEmpty())
@@ -23,7 +25,7 @@ namespace ppedv.TombstoneStrong.UI.Konsole
 
             if(allEmployees.Count() == 0)
             {
-                core.GenerateTestEmployees(); // für XML
+                core.GenerateTestData(); // für XML UND EF
                 allEmployees = core.GetAllEmployees();
             }
 
@@ -33,16 +35,16 @@ namespace ppedv.TombstoneStrong.UI.Konsole
             }
 
 
-            //Console.WriteLine("Bitte geben Sie die ID des Mitarbeiters an, dessen Zeiterfassung Sie sehen wollen:");
-            //int id = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Bitte geben Sie die ID des Mitarbeiters an, dessen Zeiterfassung Sie sehen wollen:");
+            int id = Convert.ToInt32(Console.ReadLine());
 
-            //var allTimeSheets = core.GetAllTimeSheetsForEmployee(allEmployees.First(x => x.ID == id));
+            var allTimeSheets = core.GetAllTimeSheetsForEmployee(allEmployees.First(x => x.ID == id));
 
-            //foreach (var timeSheet in allTimeSheets)
-            //{
-            //    Console.WriteLine($"Von {timeSheet.Start.ToLongDateString()} bis {timeSheet.End.ToLongDateString()}");
-            //    Console.WriteLine($"Gesamtzeit: { timeSheet.End - timeSheet.Start}");
-            //}
+            foreach (var timeSheet in allTimeSheets)
+            {
+                Console.WriteLine($"Von {timeSheet.Start.ToLongDateString()} bis {timeSheet.End.ToLongDateString()}");
+                Console.WriteLine($"Gesamtzeit: { timeSheet.End - timeSheet.Start}");
+            }
 
             Console.WriteLine("---ENDE---");
             Console.ReadKey();

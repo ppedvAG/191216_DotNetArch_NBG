@@ -8,6 +8,11 @@ namespace ppedv.TombstoneStrong.Data.EF
 {
     public class EFContext : DbContext
     {
+        public EFContext()
+        {
+            this.Database.EnsureCreated();
+        }
+
         public DbSet<Employee> Employee { get; set; }
         public DbSet<TimeSheet> TimeSheet { get; set; }
 
