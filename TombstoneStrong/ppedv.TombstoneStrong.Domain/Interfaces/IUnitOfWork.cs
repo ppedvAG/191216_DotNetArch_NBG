@@ -7,5 +7,6 @@
 
         // Allgemeine Implementierung
         IUniversalRepository<T> GetRepository<T>() where T : Entity;
+        void SaveAll();
     }
 }
